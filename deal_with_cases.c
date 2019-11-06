@@ -6,11 +6,12 @@
 /*   By: glaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 18:31:48 by glaurent          #+#    #+#             */
-/*   Updated: 2019/11/04 23:22:54 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/06 14:17:57 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include "ft_printf.h"
+#include <unistd.h>
 
 int		ft_putchar(char c)
 {
@@ -22,6 +23,11 @@ int		ft_putstr(char *str)
 {
 	int i;
 
+	if  (!str)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	i = -1;
 	while (str[++i])
 		;
@@ -29,50 +35,45 @@ int		ft_putstr(char *str)
 	return (i);
 }
 
-int		ft_putnbr(int n)
+void	ft_putnbr(int n, int *count)
 {
 	unsigned int	nb;
-	static int		count = 0;
 
 	nb = (n < 0 ? -n : n);
 	if (n < 0)
 	{
 		write(1, "-", 1);
-		++count;
+		++*count;
 	}
 	if (nb > 9)
 	{
-		ft_putnbr(nb / 10);
+		ft_putnbr(nb / 10, count);
 		ft_putchar(nb % 10 + '0');
 	}
 	else
 		ft_putchar(nb % 10 + '0');
-	++count;
-	return (count);
+	++*count;
 }
 
-int		ft_putnbr_u(unsigned int n)
+void	ft_putnbr_u(unsigned int n, int *count)
 {
-	static int		count = 0;
-	
 	if (n > 9)
 	{
-		ft_putnbr_u(n / 10);
+		ft_putnbr_u(n / 10, count);
 		ft_putchar(n % 10 + '0');
 	}
 	else
 		ft_putchar(n % 10 + '0');
-	++count;
-	return (count);
+	++*count;
 }
 
-int		ft_putnbr_base(int n, char *base, int ptr)
+void	ft_putnbr_base(long int n, char *base, int ptr, int *count)
 {
-	unsigned long int	nb;
+	unsigned long 		nb;
 	int					base_len;
-	static int			count = 0;
 
 	(ptr == 1) ? write(1, "0x", 2) : 1;
+	(ptr == 1) ? *count += 2 : 1;
 	base_len = 0;
 	while (base[base_len])
 		++base_len;
@@ -80,15 +81,14 @@ int		ft_putnbr_base(int n, char *base, int ptr)
 	if (n < 0)
 	{
 		write(1, "-", 1);
-		++count;
+		++*count;
 	}
 	if (nb > base_len - 1)
 	{
-		ft_putnbr_base(nb / base_len, base, 0);
+		ft_putnbr_base(nb / base_len, base, 0, count);
 		ft_putchar(base[nb % base_len]);
 	}
 	else
 		ft_putchar(base[nb % base_len]);
-	++count;
-	return (count);
+	++*count;
 }
