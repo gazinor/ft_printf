@@ -6,31 +6,20 @@
 /*   By: glaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 18:13:27 by glaurent          #+#    #+#             */
-/*   Updated: 2019/11/06 15:25:44 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/07 21:34:03 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdarg.h>
 #include <stdlib.h>
-/*
-int		ft_check_flags(const char *format, int *count, int i)
-{
-	while (format[i])
-	{
-		 if (format[i] == '.')
-			ft_point_case(format, count);
-		 if (format[i] == '-')
-		 	ft_minus_case(format, count);
-		 if (format[i] == '0')
-		 	ft_zero_case(format, count);
-		 if (format[i] == '*')
-		 	ft_wildcard_case(format, count);
-	}
-	return (i);
-}
-*/
-t_f g_cases[255] =
+
+			//ft_point_case(format, count);
+			//ft_minus_case(format, count);
+			//ft_zero_case(format, count);
+			//ft_wildcard_case(format, count);
+
+t_f		g_cases[255] =
 {
 	['c'] = &ft_case_c,
 	['s'] = &ft_case_s,
@@ -43,6 +32,56 @@ t_f g_cases[255] =
 	['%'] = &ft_case_percent
 };
 
+bool	g_flag_charset[255] =
+{
+	['.'] = false;
+	['-'] = false;
+	['*'] = false;
+	['0'] = false;
+};
+
+char	*ft_define_type(char c)
+{
+	char	*type;
+
+	if (c == 'c')
+		return (type = ft_strdup("char"));
+	if (c == 's')
+		return (type = ft_strdup("char *"));
+	if (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == 'p')
+		return(type = ft_strdup("int"));
+	return (NULL);
+}
+
+void	ft_check_flags(const char *format, int i)
+{
+	while (format[i] && !g_cases[format[i]])
+	{
+		if (format[i] == '.' || format[i] == '-' ||
+			format[i] == '0' || format[i] == '*')
+			g_flag_charset[format[i]] = true;
+		++i;
+	}
+	if (g_cases[format[i]] != NULL)
+		element.type = ft_define_type(format[i]);
+}
+
+void	ft_init_flags(const char *format, int i)
+{
+	ft_check_flags(format, i);
+	while (format[i])
+	{
+		if (element.width == 0 && format[i] >= '0' && format[i] <= '9')
+			element.width = ft_atoi(format + i + 1);
+		else if (format[i] == '.')
+		{
+			element.precision = ft_atoi(format + i + 1);
+			break ;
+		}
+		++i;
+	}
+}
+
 int		ft_case_all(va_list ap, const char *format, int *count)
 {
 	t_f		f;
@@ -53,8 +92,8 @@ int		ft_case_all(va_list ap, const char *format, int *count)
 	{
 		if ((f = g_cases[format[i]]) != NULL)
 			f(ap, count);
-//		else
-//			i += ft_check_flags(format + i, count, 0);
+		else
+			i += ft_init_flags(format + i, count, 0);
 	}
 	else
 		return (0);
@@ -79,17 +118,4 @@ int		ft_printf(const char *format, ...)
 	}
 	va_end(ap);
 	return (count);
-}
-
-int main()
-{
-	int p = 123;
-	int ret1;
-	int ret2;
-
-//	ret1 =    printf("\n---VRAI PRINTF :\n%d\n%u\n%u\n%d\n%x\n%X\n%d", 741, 852, 963, 789, 123, 546, 0x456545);
-//	ret2 = ft_printf("\n---FAUX PRINTF :\n%d\n%u\n%u\n%d\n%x\n%X\n%d", 741, 852, 963, 789, 123, 546, 0x456545);
-//	printf("\nret1 = %d\nret2 = %d\n", ret1, ret2);
-	printf("%-.22s\n", "salut comment ca va ?");
-	return (0);
 }
