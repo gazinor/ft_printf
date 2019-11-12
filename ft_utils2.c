@@ -6,15 +6,15 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:37:47 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/12 11:44:58 by gaefourn         ###   ########.fr       */
+/*   Updated: 2019/11/12 16:18:12 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_look(t_struct *p, pointe fct[255])
+void	ft_look(t_struct *p, pointe fct[100])
 {
-	pointe	check;
+	pointe		check;
 
 	while (p->i < p->total &&
 		(!(check = fct[p->format[p->i]])))
@@ -26,9 +26,9 @@ void	ft_look(t_struct *p, pointe fct[255])
 			p->width = ft_atoi(p);
 		if (p->format[p->i] == '.')
 			p->precision = ft_atoi(p);
+		if (p->flags['-'] == 1)
+			p->flags['0'] = 0;
 		++p->i;
-	if (p->flags['-'] == 1)
-		p->flags['0'] = 0;
 	}
 	check(p);
 }

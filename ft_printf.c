@@ -6,13 +6,13 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:30:51 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/12 11:44:56 by gaefourn         ###   ########.fr       */
+/*   Updated: 2019/11/12 16:18:14 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_init_fct(pointe fct[255])
+void	ft_init_fct(pointe fct[100])
 {
 	fct['c'] = &ft_c;
 	fct['s'] = &ft_str;
@@ -33,12 +33,7 @@ void	ft_reset_flags(t_struct *p)
 	p->len = 0;
 }
 
-/*
-** CECI EST LA FONCTION QUI VA APPELLER LES FONCTIONS NECESSAIRES
-** SELON LES BESOINS
-*/
-
-void	ft_init_p(t_struct *p, const char *format, pointe fct[255])
+void	ft_init_p(t_struct *p, const char *format, pointe fct[100])
 {
 	p->format = NULL;
 	p->count = 0;
@@ -51,7 +46,7 @@ void	ft_init_p(t_struct *p, const char *format, pointe fct[255])
 int	ft_printf(const char *format, ...)
 {
 	t_struct	p;
-	pointe		fct[255];
+	pointe		fct[100];
 
 	ft_init_p(&p, format, fct);
 	p.format = format;
@@ -72,5 +67,6 @@ int	ft_printf(const char *format, ...)
 		}
 		++p.i;
 	}
+	va_end(p.ap);
 	return (p.count);
 }

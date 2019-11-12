@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 23:24:21 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/12 11:42:19 by gaefourn         ###   ########.fr       */
+/*   Updated: 2019/11/12 15:15:26 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct	s_struct
 	int			flags[255];
 	int			len;
 	int			total;
+	int			fct;
 }				t_struct;
 
 typedef	void	(*pointe)(t_struct*);
