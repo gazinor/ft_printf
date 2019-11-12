@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:37:47 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/11 23:38:50 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/12 11:44:58 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ void	ft_look(t_struct *p, pointe fct[255])
 {
 	pointe	check;
 
-	while (p->format[p->i] &&
-		!(check = fct[p->format[p->i]]))
+	while (p->i < p->total &&
+		(!(check = fct[p->format[p->i]])))
 	{
-//		printf("[%c]", p->format[p->i]);
 		if (p->format[p->i] == '-' || (p->format[p->i] == '0') ||
 			(p->format[p->i] == '.'))
 			p->flags[p->format[p->i]] = 1;
@@ -27,13 +26,10 @@ void	ft_look(t_struct *p, pointe fct[255])
 			p->width = ft_atoi(p);
 		if (p->format[p->i] == '.')
 			p->precision = ft_atoi(p);
-		p->i++;
-	}
-//	printf("[%c]", p->format[p->i]);
-//	printf("[width : %d]", p->width);
-//	printf("[precision : %d]\n", p->precision);
+		++p->i;
 	if (p->flags['-'] == 1)
 		p->flags['0'] = 0;
+	}
 	check(p);
 }
 

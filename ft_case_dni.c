@@ -6,7 +6,7 @@
 /*   By: glaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 09:58:06 by glaurent          #+#    #+#             */
-/*   Updated: 2019/11/12 00:58:51 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/12 11:09:46 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_width_num(t_struct *p, int copy, char c)
 		(p->precision > p->len) ? ft_display_zero(p) : 1;
 		ft_putnbr_base((unsigned long long)copy,
 				"0123456789", copy < 0 ? -1 : 1);
-		while (++i < (p->width - 
+		while (++i < (p->width -
 					(p->precision > p->len ? p->precision : p->len)))
 		{
 			ft_putchar(c);
@@ -43,7 +43,7 @@ void	ft_width_num(t_struct *p, int copy, char c)
 	}
 	else
 	{
-		while (++i < (p->width - 
+		while (++i < (p->width -
 					(p->precision > p->len ? p->precision : p->len)))
 		{
 			ft_putchar(c);

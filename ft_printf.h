@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 23:24:21 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/11 23:37:32 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/12 11:42:19 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <stdarg.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 typedef struct	s_struct
 {
@@ -26,6 +27,7 @@ typedef struct	s_struct
 	va_list		ap;
 	int			flags[255];
 	int			len;
+	int			total;
 }				t_struct;
 
 typedef	void	(*pointe)(t_struct*);

@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:30:51 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/12 00:39:53 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/12 11:44:56 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	ft_init_p(t_struct *p, const char *format, pointe fct[255])
 	p->format = NULL;
 	p->count = 0;
 	p->i = 0;
+	p->total = 0;
 	ft_init_fct(fct);
 }
 
@@ -55,6 +56,8 @@ int	ft_printf(const char *format, ...)
 	ft_init_p(&p, format, fct);
 	p.format = format;
 	va_start(p.ap, format);
+	while (p.format[p.total])
+		++p.total;
 	while (p.format[p.i])
 	{
 		if (p.format[p.i] == '%')
