@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 04:32:29 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/11 09:10:21 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/11 22:53:00 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_less(t_struct *p, char *copy, char c)
 		while (++i < (p->width - len))
 		{
 			ft_putchar(c);
-			p->count++;
+			++p->count;
 		}
 	}
 	else
@@ -56,7 +56,7 @@ void	ft_less(t_struct *p, char *copy, char c)
 		while (++i < (p->width - len))
 		{
 			ft_putchar(c);
-			p->count++;
+			++p->count;
 		}
 		copy ? ft_putstr(copy) : 1;
 	}
@@ -80,4 +80,5 @@ void	ft_str(t_struct *p)
 	else
 		ft_putstr(chaine);
 	p->count += ft_strlen(chaine);
+	free(chaine);
 }

@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:37:47 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/11 10:23:28 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/11 23:38:50 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_look(t_struct *p, pointe fct[255])
 //	printf("[%c]", p->format[p->i]);
 //	printf("[width : %d]", p->width);
 //	printf("[precision : %d]\n", p->precision);
-	if ((p->flags['-'] == 1)/* || (p->flags['.'] == 1)*/)
+	if (p->flags['-'] == 1)
 		p->flags['0'] = 0;
 	check(p);
 }
@@ -57,7 +57,7 @@ int		ft_atoi(t_struct *p)
 	return (nb);
 }
 
-int	ft_strlen(char *str)
+int		ft_strlen(char *str)
 {
 	int i;
 
@@ -69,7 +69,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_nbrlen(int nb)
+int		ft_nbrlen(int nb)
 {
 	int size;
 
