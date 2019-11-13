@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 03:41:28 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/11 10:28:50 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/13 19:05:23 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_c(t_struct *p)
 
 	i = -1;
 	copy = (char)va_arg(p->ap, void*);
-	if (p->flags['-'] == 1)
+	if (p->minus == TRUE)
 	{
 		ft_putchar(copy ? copy : '\0');
 		while (++i < p->width - 1)
@@ -32,7 +32,7 @@ void	ft_c(t_struct *p)
 	{
 		while (++i < p->width - 1)
 		{
-			ft_putchar(p->flags['0'] == 1 ? '0' : ' ');
+			ft_putchar(p->zero == TRUE ? '0' : ' ');
 			p->count++;
 		}
 		ft_putchar(copy ? copy : '\0');

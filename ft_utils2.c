@@ -6,31 +6,33 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:37:47 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/12 16:18:12 by gaefourn         ###   ########.fr       */
+/*   Updated: 2019/11/13 19:54:23 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_look(t_struct *p, pointe fct[100])
+int		ft_set_find(char c)
 {
-	pointe		check;
+	if (c == 'c' || c == 'd' || c == 'i' || c == 's' || c == 'x' || c == 'X' ||
+			c == 'u' || c == 'p')
+		return (0);
+	else
+		return (1);
+}
 
-	while (p->i < p->total &&
-		(!(check = fct[p->format[p->i]])))
-	{
-		if (p->format[p->i] == '-' || (p->format[p->i] == '0') ||
-			(p->format[p->i] == '.'))
-			p->flags[p->format[p->i]] = 1;
-		if (p->format[p->i] >= '1' && p->format[p->i] <= '9')
-			p->width = ft_atoi(p);
-		if (p->format[p->i] == '.')
-			p->precision = ft_atoi(p);
-		if (p->flags['-'] == 1)
-			p->flags['0'] = 0;
-		++p->i;
-	}
-	check(p);
+void	ft_check_again_xd(t_struct *p)
+{
+	if (p->format[p->i] == '-')
+		p->minus = TRUE;
+	if (p->format[p->i] == '0')
+		p->zero = TRUE;
+	if (p->format[p->i] == '.')
+		p->dot = TRUE;
+	if (p->format[p->i] >= '1' && p->format[p->i] <= '9')
+		p->width = ft_atoi(p);
+	if (p->format[p->i] == '.')
+		p->precision = ft_atoi(p);
 }
 
 int		ft_atoi(t_struct *p)
@@ -39,10 +41,10 @@ int		ft_atoi(t_struct *p)
 
 	nb = 0;
 	if (p->format[p->i] == '.' && !(p->format[++p->i] >= '0' &&
-		p->format[p->i] <= '9'))
+				p->format[p->i] <= '9'))
 	{
 		--p->i;
-		return(-1);
+		return (-1);
 	}
 	while (p->format[p->i] >= '0' && p->format[p->i] <= '9')
 	{

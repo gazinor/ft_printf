@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 23:13:17 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/12 10:35:57 by gaefourn         ###   ########.fr       */
+/*   Updated: 2019/11/13 19:57:59 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		ft_check_base(char *base)
 	while (base[i])
 	{
 		j = i + 1;
-		if ((base[i] >= '0' && base[i] <= '9') ||( base[i] >= 'a' &&
+		if ((base[i] >= '0' && base[i] <= '9') || (base[i] >= 'a' &&
 		base[i] <= 'z') || (base[i] >= 'A' && base[i] <= 'Z'))
 		{
 			while (base[j++])
@@ -59,14 +59,14 @@ int		ft_check_base(char *base)
 
 void	ft_putnbr_base(unsigned long long n, char *base, int signe)
 {
-	unsigned long long nb;
-	int		i;
+	unsigned long long	nb;
+	int					i;
 
 	nb = n;
 	i = 0;
 	if (ft_check_base(base) == 0)
 		return ;
-	while(base[i])
+	while (base[i])
 		i++;
 	if (signe == -1)
 		ft_putchar('-');

@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 04:32:29 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/11 22:53:00 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/13 20:01:44 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_less(t_struct *p, char *copy, char c)
 
 	i = -1;
 	len = ft_strlen(copy);
-	if (p->flags['-'] == 1)
+	if (p->minus == TRUE)
 	{
 		copy ? ft_putstr(copy) : 1;
 		while (++i < (p->width - len))
@@ -70,11 +70,11 @@ void	ft_str(t_struct *p)
 	char	*chaine;
 	char	h;
 
-	h = p->flags['0'] == 1 ? '0' : ' ';
-	p->precision == -1 ? p->precision =  0 : 1;
+	h = p->zero == TRUE ? '0' : ' ';
+	p->precision == -1 ? p->precision = 0 : 1;
 	copy = (char *)va_arg(p->ap, void *);
 	chaine = ft_strndup(copy,
-			p->flags['.'] == 1 ? p->precision : ft_strlen(copy));
+			p->dot == TRUE ? p->precision : ft_strlen(copy));
 	if (p->width != 0)
 		ft_less(p, chaine, h);
 	else
