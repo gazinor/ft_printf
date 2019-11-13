@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:30:51 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/13 19:58:15 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/13 21:07:08 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,12 @@ void	ft_look(t_struct *p)
 		p->zero = FALSE;
 	if (p->format[p->i] == 'c')
 		ft_c(p);
-	if (p->format[p->i] == 's')
+	else if (p->format[p->i] == 's')
 		ft_str(p);
-	if (p->format[p->i] == 'd' || p->format[p->i] == 'i')
+	else if (p->format[p->i] == 'd' || p->format[p->i] == 'i')
 		ft_num(p);
+	else if (p->format[p->i] == 'u')
+		ft_num_u(p);
 }
 
 int		ft_printf(const char *format, ...)

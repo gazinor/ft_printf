@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 23:24:21 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/13 20:01:46 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/13 21:09:56 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			ft_check_again_xd(t_struct *p);
 void			ft_putchar(char c);
 void			ft_putstr(char *str);
 int				ft_check_base(char *base);
-void			ft_putnbr_base(int n, char *base, int signe);
+void			ft_putnbr_base(int n, char *base);
 void			ft_look(t_struct *p);
 int				ft_atoi(t_struct *p);
 void			ft_str(t_struct *p);
@@ -58,5 +58,8 @@ char			*ft_strndup(char *str, int n);
 void			ft_num(t_struct *p);
 void			ft_display_zero(t_struct *p);
 void			ft_width_num(t_struct *p, int copy, char c);
+void			ft_num_u(t_struct *p);
+void			ft_width_num_u(t_struct *p, int copy, char c);
+void			ft_display_zero_u(t_struct *p);
 
 #endif

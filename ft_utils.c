@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 23:13:17 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/13 19:57:59 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/13 21:10:26 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		ft_check_base(char *base)
 	return (1);
 }
 
-void	ft_putnbr_base(unsigned long long n, char *base, int signe)
+void	ft_putnbr_base(unsigned long long n, char *base)
 {
 	unsigned long long	nb;
 	int					i;
@@ -68,12 +68,10 @@ void	ft_putnbr_base(unsigned long long n, char *base, int signe)
 		return ;
 	while (base[i])
 		i++;
-	if (signe == -1)
-		ft_putchar('-');
 	if (nb > i)
 	{
-		ft_putnbr_base(nb / i, base, 1);
-		ft_putnbr_base(nb % i, base, 1);
+		ft_putnbr_base(nb / i, base);
+		ft_putnbr_base(nb % i, base);
 	}
 	else
 		ft_putchar(base[nb]);
