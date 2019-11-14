@@ -6,7 +6,7 @@
 /*   By: glaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 09:58:06 by glaurent          #+#    #+#             */
-/*   Updated: 2019/11/14 08:03:18 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 10:24:02 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 void	ft_width_num_u(t_struct *p, unsigned int copy, char c)
 {
 	int		i;
-	int		c_copy;
 
 	i = -1;
 	if (p->minus == TRUE)
 	{
-		(p->precision > p->len) ? ft_display_zero(p, 0) : 1;
+		if (p->precision > p->len)
+			ft_display_zero(p, copy == 0 ? 1 : 0);
+		if (copy == 0 && p->dot == TRUE)
+			return ;
 		ft_putnbr_base((unsigned int)copy, "0123456789", p);
 		while (++i < (p->width -
 					(p->precision > p->len ? p->precision : p->len)))
@@ -31,7 +33,10 @@ void	ft_width_num_u(t_struct *p, unsigned int copy, char c)
 		while (++i < (p->width -
 					(p->precision > p->len ? p->precision : p->len)))
 			ft_putchar(c, p);
-		(p->precision > p->len) ? ft_display_zero(p, 0) : 1;
+		if (p->precision > p->len)
+			ft_display_zero(p, copy == 0 ? 1 : 0);
+		if (copy == 0 && p->dot == TRUE)
+			return ;
 		ft_putnbr_base((unsigned int)copy, "0123456789", p);
 	}
 }

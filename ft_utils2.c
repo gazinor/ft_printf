@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:37:47 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/14 08:00:02 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 10:04:14 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int		ft_set_find(char c)
 	if (c == 'c' || c == 'd' || c == 'i' || c == 's' || c == 'x' || c == 'X' ||
 			c == 'u' || c == 'p' || c == '%')
 		return (0);
-	else if (c != 'c' && c != 'd' && c != 'i' && c != 's' && c != 'x'
-		&& c != 'X' &&	c != 'u' && c != 'p' && c != '%' && c != '-'
-		&& c != '*' && c != '.' && !(c >= '0' && c <= '9'))
+	else if (c != 'c' && c != 'd' && c != 'i' && c != 's' && c != 'x' &&
+		c != 'X' && c != 'u' && c != 'p' && c != '%' && c != '-' &&
+		c != '*' && c != '.' && !(c >= '0' && c <= '9'))
 		return (0);
 	else if (c == '\0')
 		return (-1);
@@ -34,6 +34,7 @@ void	ft_check_again_xd(t_struct *p)
 		{
 			if ((p->precision = (int)va_arg(p->ap, void *)) < 0)
 				p->dot = FALSE;
+			p->precision = p->precision == 0 ? -1 : p->precision;
 		}
 		else if ((p->width = (int)va_arg(p->ap, void *)) < 0)
 		{
