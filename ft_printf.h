@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 23:24:21 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/14 08:02:10 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 11:28:57 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ void			ft_width_num(t_struct *p, long copy, char c);
 void			ft_num_u(t_struct *p);
 void			ft_width_num_u(t_struct *p, unsigned int copy, char c);
 void			ft_num_x(t_struct *p);
-void			ft_width_num_x(t_struct *p, unsigned int copy, char c);
+void			ft_width_num_x(t_struct *p, unsigned long copy, char c);
 void			ft_num_x_big(t_struct *p);
-void			ft_width_num_x_big(t_struct *p, unsigned int copy, char c);
+void			ft_width_num_x_big(t_struct *p, unsigned long copy, char c);
 void			ft_pct(t_struct *p);
 void			ft_width_num_p(t_struct *p, long copy, char c);
 void			ft_num_p(t_struct *p);

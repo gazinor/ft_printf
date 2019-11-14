@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 04:32:29 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/14 06:17:05 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 11:19:47 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	ft_less(t_struct *p, char *copy, char c)
 
 void	ft_str(t_struct *p)
 {
-	int		i;
 	char	*copy;
 	char	*chaine;
 	char	h;

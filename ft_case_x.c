@@ -6,13 +6,13 @@
 /*   By: glaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 23:34:22 by glaurent          #+#    #+#             */
-/*   Updated: 2019/11/14 10:56:55 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 11:27:23 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_width_num_x(t_struct *p, unsigned int copy, char c)
+void	ft_width_num_x(t_struct *p, unsigned long copy, char c)
 {
 	int		i;
 

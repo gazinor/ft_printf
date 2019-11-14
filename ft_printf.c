@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:30:51 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/14 07:35:38 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 11:20:48 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_reset_flags(t_struct *p)
 	p->len = 0;
 }
 
-void	ft_init_p(t_struct *p, const char *format)
+void	ft_init_p(t_struct *p)
 {
 	p->format = NULL;
 	p->count = 0;
@@ -63,7 +63,7 @@ int		ft_printf(const char *format, ...)
 {
 	t_struct	p;
 
-	ft_init_p(&p, format);
+	ft_init_p(&p);
 	p.format = format;
 	va_start(p.ap, format);
 	while (p.format[p.total])
