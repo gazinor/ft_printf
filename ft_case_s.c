@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 04:32:29 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/13 20:01:44 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 01:08:46 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,19 @@ char	*ft_strndup(char *str, int n)
 {
 	char	*dest;
 	int		i;
+	int size;
 
-	i = 0;
+	size = ft_strlen(str);
 	if (!str)
 	{
-		if (!(dest = malloc(sizeof(char) * (7))))
+		if (!(dest = malloc(sizeof(char) * (size + 1))))
 			return (NULL);
 		str = "(null)\0";
 	}
-	while (str[i] && i < n)
-		++i;
-	if (!(dest = malloc(sizeof(char) * (i + 1))))
+	if (!(dest = malloc(sizeof(char) * (size + 1))))
 		return (NULL);
 	i = -1;
-	while (str[++i] && i < n)
+	while (++i < n && i < size)
 		dest[i] = str[i];
 	dest[i] = '\0';
 	return (dest);
@@ -79,6 +78,5 @@ void	ft_str(t_struct *p)
 		ft_less(p, chaine, h);
 	else
 		ft_putstr(chaine);
-	p->count += ft_strlen(chaine);
-	free(chaine);
+//	free(chaine);
 }

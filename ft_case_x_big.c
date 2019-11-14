@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_case_dni.c                                      :+:      :+:    :+:   */
+/*   ft_case_x_big.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 09:58:06 by glaurent          #+#    #+#             */
-/*   Updated: 2019/11/14 01:37:37 by glaurent         ###   ########.fr       */
+/*   Created: 2019/11/14 01:17:23 by glaurent          #+#    #+#             */
+/*   Updated: 2019/11/14 01:53:48 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_display_zero(t_struct *p)
+void	ft_width_num_x_big(t_struct *p, int copy, char c)
 {
 	int		i;
+	int		c_copy;
 
 	i = -1;
-	while (++i < p->precision - p->len)
-		ft_putchar('0');
-}
-
-void	ft_width_num(t_struct *p, long copy, char c)
-{
-	int			i;
-	long		c_copy;
-
-	i = -1;
-	c_copy = copy < 0 ? -copy : copy;
 	if (p->minus == TRUE)
 	{
-		copy < 0 ? ft_putchar('-') : 1;
 		(p->precision > p->len) ? ft_display_zero(p) : 1;
-		ft_putnbr_base((long)c_copy,
-				"0123456789");
+		ft_putnbr_base((unsigned int)copy,
+				"0123456789ABCDEF");
 		while (++i < (p->width -
 					(p->precision > p->len ? p->precision : p->len)))
 			ft_putchar(c);
@@ -43,20 +32,19 @@ void	ft_width_num(t_struct *p, long copy, char c)
 		while (++i < (p->width -
 					(p->precision > p->len ? p->precision : p->len)))
 			ft_putchar(c);
-		copy < 0 ? ft_putchar('-') : 1;
 		(p->precision > p->len) ? ft_display_zero(p) : 1;
-		ft_putnbr_base((long)c_copy,
-				"0123456789");
+		ft_putnbr_base((unsigned int)copy,
+				"0123456789ABCDEF");
 	}
 }
 
-void	ft_num(t_struct *p)
+void	ft_num_x_big(t_struct *p)
 {
-	long	copy;
+	unsigned int		copy;
 
-	copy = (int)va_arg(p->ap, void *);
-	p->len = ft_nbrlen((int)copy);
+	copy = (unsigned int)va_arg(p->ap, void *);
+	p->len = ft_nbrlen(copy);
 	if (p->dot == TRUE)
 		p->zero = FALSE;
-	ft_width_num(p, copy, p->zero == TRUE ? '0' : ' ');
+	ft_width_num_x_big(p, copy, p->zero == TRUE ? '0' : ' ');
 }

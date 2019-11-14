@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:30:51 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/13 21:07:08 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 02:40:41 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,9 @@ void	ft_init_p(t_struct *p, const char *format)
 
 void	ft_look(t_struct *p)
 {
-	while (p->i < p->total &&
+	while (++p->i < p->total &&
 			(ft_set_find(p->format[p->i]) == 1))
-	{
 		ft_check_again_xd(p);
-		if (p->format[p->i + 1] && p->format[p->i + 1] == '%')
-		{
-			ft_putchar('%');
-			++p->i;
-			break ;
-		}
-		++p->i;
-	}
 	if (p->minus == TRUE)
 		p->zero = FALSE;
 	if (p->format[p->i] == 'c')
@@ -54,6 +45,12 @@ void	ft_look(t_struct *p)
 		ft_num(p);
 	else if (p->format[p->i] == 'u')
 		ft_num_u(p);
+	else if (p->format[p->i] == 'x')
+		ft_num_x(p);
+	else if (p->format[p->i] == 'X')
+		ft_num_x_big(p);
+	else if (p->format[p->i] == '%')
+		ft_pct(p);
 }
 
 int		ft_printf(const char *format, ...)

@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:37:47 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/13 19:54:23 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 02:40:39 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_set_find(char c)
 {
 	if (c == 'c' || c == 'd' || c == 'i' || c == 's' || c == 'x' || c == 'X' ||
-			c == 'u' || c == 'p')
+			c == 'u' || c == 'p' || c == '%')
 		return (0);
 	else
 		return (1);
@@ -23,6 +23,20 @@ int		ft_set_find(char c)
 
 void	ft_check_again_xd(t_struct *p)
 {
+	if (p->format[p->i] == '*')
+	{
+		if (p->format[p->i - 1] == '.')
+		{
+			if ((p->precision = (int)va_arg(p->ap, void *)) < 0) 
+				p->dot = FALSE;
+		}
+		else
+			if ((p->width = (int)va_arg(p->ap, void *)) < 0)
+			{
+				p->width = -p->width;
+				p->minus = TRUE;
+			}
+	}
 	if (p->format[p->i] == '-')
 		p->minus = TRUE;
 	if (p->format[p->i] == '0')
@@ -67,7 +81,7 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-int		ft_nbrlen(int nb)
+int		ft_nbrlen(long nb)
 {
 	int size;
 

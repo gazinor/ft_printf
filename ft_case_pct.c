@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_case_c.c                                        :+:      :+:    :+:   */
+/*   ft_case_pct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: glaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 03:41:28 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/14 02:22:07 by glaurent         ###   ########.fr       */
+/*   Created: 2019/11/14 02:22:23 by glaurent          #+#    #+#             */
+/*   Updated: 2019/11/14 02:30:46 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_c(t_struct *p)
+void	ft_pct(t_struct *p)
 {
 	int		i;
-	char	copy;
 
 	i = -1;
-	copy = (char)va_arg(p->ap, void*);
 	if (p->minus == TRUE)
 	{
-		ft_putchar(copy ? copy : '\0');
+		ft_putchar('%');
 		while (++i < p->width - 1)
 		{
 			ft_putchar(' ');
@@ -35,7 +33,7 @@ void	ft_c(t_struct *p)
 			ft_putchar(p->zero == TRUE ? '0' : ' ');
 			p->count++;
 		}
-		ft_putchar(copy ? copy : '\0');
+		ft_putchar('%');
 	}
 	p->count++;
 }

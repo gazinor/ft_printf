@@ -6,11 +6,12 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 23:13:17 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/13 21:10:26 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 02:30:52 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "ft_printf.h"
 
 void	ft_putchar(char c)
 {
@@ -32,31 +33,6 @@ void	ft_putstr(char *str)
 	write(1, str, i);
 }
 
-int		ft_check_base(char *base)
-{
-	int i;
-	int j;
-
-	i = 0;
-	if (!base || !base[i])
-		return (0);
-	while (base[i])
-	{
-		j = i + 1;
-		if ((base[i] >= '0' && base[i] <= '9') || (base[i] >= 'a' &&
-		base[i] <= 'z') || (base[i] >= 'A' && base[i] <= 'Z'))
-		{
-			while (base[j++])
-				if (base[i] == base[j])
-					return (0);
-			i++;
-		}
-		else
-			return (0);
-	}
-	return (1);
-}
-
 void	ft_putnbr_base(unsigned long long n, char *base)
 {
 	unsigned long long	nb;
@@ -64,8 +40,6 @@ void	ft_putnbr_base(unsigned long long n, char *base)
 
 	nb = n;
 	i = 0;
-	if (ft_check_base(base) == 0)
-		return ;
 	while (base[i])
 		i++;
 	if (nb > i)
