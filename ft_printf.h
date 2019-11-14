@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 23:24:21 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/14 04:01:27 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 05:54:59 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ typedef struct	s_struct
 
 int				ft_set_find(char c);
 void			ft_check_again_xd(t_struct *p);
-void			ft_putchar(char c);
-void			ft_putstr(char *str);
+void			ft_putchar(char c, t_struct *p);
+void			ft_putstr(char *str, t_struct *p);
 int				ft_check_base(char *base);
-void			ft_putnbr_base(unsigned long long n, char *base);
+void			ft_putnbr_base(unsigned long long n, char *base, t_struct *p);
 void			ft_look(t_struct *p);
 int				ft_atoi(t_struct *p);
 void			ft_str(t_struct *p);

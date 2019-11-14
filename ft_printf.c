@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:30:51 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/14 02:57:07 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 05:42:38 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,7 @@ int		ft_printf(const char *format, ...)
 			ft_look(&p);
 		}
 		else
-		{
-			ft_putchar(p.format[p.i]);
-			++p.count;
-		}
+			ft_putchar(p.format[p.i], &p);
 		++p.i;
 	}
 	va_end(p.ap);

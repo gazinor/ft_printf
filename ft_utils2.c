@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:37:47 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/14 03:03:54 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 05:43:00 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,14 @@ void	ft_check_again_xd(t_struct *p)
 	{
 		if (p->format[p->i - 1] == '.')
 		{
-			if ((p->precision = (int)va_arg(p->ap, void *)) < 0) 
+			if ((p->precision = (int)va_arg(p->ap, void *)) < 0)
 				p->dot = FALSE;
 		}
-		else
-			if ((p->width = (int)va_arg(p->ap, void *)) < 0)
-			{
-				p->width = -p->width;
-				p->minus = TRUE;
-			}
+		else if ((p->width = (int)va_arg(p->ap, void *)) < 0)
+		{
+			p->width = -p->width;
+			p->minus = TRUE;
+		}
 	}
 	if (p->format[p->i] == '-')
 		p->minus = TRUE;
