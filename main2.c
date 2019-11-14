@@ -477,11 +477,53 @@ int main ()
 	j=ft_printf("...%..2.20..-..X..%..-..%-5X....%20.-*.6.*X..\n", 0, NULL, 0, 0);
 	(i != j) ? printf(R"KO Diff return\n") : printf(G"OK\n");
 	printf("RETURN = printf :%d ft_printf: %d\n"S, i, j);
-	printf(B"--------- TEST 9 HEXA U---------\n"S);
+	printf(B"--------- TEST 10 HEXA U---------\n"S);
 	i=printf("%..-.5X\n", main);
 	j=ft_printf("%..-.5X\n", main);
 	(i != j) ? printf(R"KO Diff return\n") : printf(G"OK\n");
 	printf("RETURN = printf :%d ft_printf: %d\n"S, i, j);
 
+	printf(B"\n========= CAS BIEN TROP BALEZE ==========\n"S);
+	printf(B"--------- TEST 1 ---------\n"S);
+	i=printf("%.5i%u7r%.*x%-11cRL%06.2d4ojCAlh3%14.5d\n", -2147483647, 2147483647, 1, 0, '\0', -2147483647, -2147483647);
+	j=ft_printf("%.5i%u7r%.*x%-11cRL%06.2d4ojCAlh3%14.5d\n", -2147483647, 2147483647, 1, 0, '\0', -2147483647, -2147483647);
+	(i != j) ? printf(R"KO Diff return\n") : printf(G"OK\n");
+	printf("RETURN = printf :%d ft_printf: %d\n"S, i, j);
+	printf(B"--------- TEST 2 ---------\n"S);
+	i=printf("%0*X1dla3k%*.*XA%%\n", -1, -2147483647, 2, -1, 0);
+	j=ft_printf("%0*X1dla3k%*.*XA%%\n", -1, -2147483647, 2, -1, 0);
+	(i != j) ? printf(R"KO Diff return\n") : printf(G"OK\n");
+	printf("RETURN = printf :%d ft_printf: %d\n"S, i, j);
+
+//	//	//	A TESTER  //  //  //  //  //  //  //  //  //  //  //  //  //  // //  // // //
+//	printf("%0*X1dla3k%*.*XA%%", -1, -2147483647, 2, -1, 0);
+//	printf("dbGz%18.0du2T1IE", 0);
+//	printf("c%-cwuvZC%4sTwsKcb6HF%12.0i", 'I', NULL, 0);
+//	printf("%-.1x%9c%.5xJ%02dOYLbR", 0, 'i', -2147483647, 0);
+//	printf("l%0.*d%%%1iMl%019uO06 PgB", 0, 0, -298860996, 2147483647);
+//	printf("POdMFF6b3%10d%2.0iv5dY%13X64uxv4%3.*d", -2147483647, 0, -2147483647, 9, -2147483647);
+//	printf("%-15.3XwXEpp%-5.3x%d8P%-*.4x9iM3%-s", 0, 2147483647, 0, 4, -2147483647, NULL);
+//	printf("%-11c%05.*d%15.2u", 'Y', 0, 0, 0);
+//	printf("%-9.2X%%%%", 0);
+//	printf("QrW13iPY%.1XPpb%X1suw%-c", 0, -1773237395, 'V');
+//	printf("E6riBwO2%-15.4X%-c%05.*x%-14.2in", 0, '\0', 1, 2147483647, -576877824);
+//	printf("JZUf8%-13sg%sdC%%%-.1d%03.0x", NULL, NULL, -2147483647, 0);
+//	printf("%%%20.0d%0*i%15sFNoA1", 0, 3, 0, NULL);
+//	printf("13DonA%1.3s%%%.0im%10xVwpxgB", NULL, 0, 2147483647);
+//	printf("%015dEU3Nw%.4s2hEa", -2147483647, "Htb4xy10vbVqqESMMiUkTq4dxkwHL1");
+//	printf("%c%-*.4ueDtT%XGpuQU%0d%-.3x", 'i', -7, 0, 2147483647, 372346728, 0);
+//	printf("%5.1x%%qv4f%%%-.*i", 0, -3, 1688973441);
+//	printf("%-.5x%-7.4u%01.4i%%%0.0X", -1299358952, 0, -2147483647, 1710641765);
+//	printf("pf%%%06.0uOhUC", 0);
+//	printf("%-*.0x%-d%20d%-u", -8, 0, -2147483647, 0, 2147483647);
+//	printf("%-15.3XwXEpp%-5.3x%d8P%-*.4x9iM3%-s", 0, 2147483647, 0, 4, -2147483647, NULL);
+//	printf("E6riBwO2%-15.4X%-c%05.*x%-14.2in", 0, '\0', 1, 2147483647, -576877824);
+//	printf("11t%-12.4u%-x", 0, 2147483647);
+//	printf("T3H%14u%u%-7.2x7j2j", 0, -2147483647, 0);
+//	printf("NO8zn7wYN%02XSi6d%c%-5.0u", 2045900692, '7', 0);
+//	printf("02NhaXtDO5%015.0xi94Yso24%013.*dPk", 0, -3, -2147483647);
+//	printf("bbJiaBYJ%-13.2x%-5svJIK5%-11d", 0, "", 1900341411);
+//	printf("B%013i%c9ijMNOzovsD", -2147483647, '\0');
+//	for printf("0P%-.0i%*c%s2Far%20i", 0, 10, '\0', "VhzXhmMzvKAOrEyr3FoaVMc0UpVwxQT83oKumtQkOCfWc0O2PB9fFGLBC6UcCN", 0);
 	return 0;
 }
