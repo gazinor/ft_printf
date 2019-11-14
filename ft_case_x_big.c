@@ -6,7 +6,7 @@
 /*   By: glaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 01:17:23 by glaurent          #+#    #+#             */
-/*   Updated: 2019/11/14 11:05:40 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 11:13:04 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@ void	ft_num_x_big(t_struct *p)
 	unsigned int		copy;
 
 	copy = (unsigned int)va_arg(p->ap, void *);
-	p->len = ft_nbrlen(copy);
-	printf("\nprecision : %d\n", p->precision);
-	printf("width     : %d\n", p->width);
-	printf("len       : %d\n", p->len);
+	p->len = ft_nbrlen_base(copy);
 	if (p->dot == TRUE)
 		p->zero = FALSE;
 	ft_width_num_x_big(p, copy, p->zero == TRUE ? '0' : ' ');
