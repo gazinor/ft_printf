@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 23:24:21 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/14 05:54:59 by gaefourn         ###   ########.fr       */
+/*   Updated: 2019/11/14 08:02:10 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int				ft_nbrlen(long nb);
 int				ft_printf(const char *format, ...);
 char			*ft_strndup(char *str, int n);
 void			ft_num(t_struct *p);
-void			ft_display_zero(t_struct *p);
+void			ft_display_zero(t_struct *p, int signe);
 void			ft_width_num(t_struct *p, long copy, char c);
 void			ft_num_u(t_struct *p);
 void			ft_width_num_u(t_struct *p, unsigned int copy, char c);
@@ -68,5 +68,6 @@ void			ft_pct(t_struct *p);
 void			ft_width_num_p(t_struct *p, long copy, char c);
 void			ft_num_p(t_struct *p);
 int				ft_nbrlen_base(long nb);
+void			ft_indetermination(t_struct *p);
 
 #endif

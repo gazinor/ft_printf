@@ -6,7 +6,7 @@
 /*   By: glaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 01:17:23 by glaurent          #+#    #+#             */
-/*   Updated: 2019/11/14 05:54:40 by gaefourn         ###   ########.fr       */
+/*   Updated: 2019/11/14 08:03:37 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_width_num_x_big(t_struct *p, unsigned int copy, char c)
 	i = -1;
 	if (p->minus == TRUE)
 	{
-		(p->precision > p->len) ? ft_display_zero(p) : 1;
+		(p->precision > p->len) ? ft_display_zero(p, 0) : 1;
 		ft_putnbr_base((unsigned int)copy, "0123456789ABCDEF", p);
 		while (++i < (p->width -
 					(p->precision > p->len ? p->precision : p->len)))
@@ -31,7 +31,7 @@ void	ft_width_num_x_big(t_struct *p, unsigned int copy, char c)
 		while (++i < (p->width -
 					(p->precision > p->len ? p->precision : p->len)))
 			ft_putchar(c, p);
-		(p->precision > p->len) ? ft_display_zero(p) : 1;
+		(p->precision > p->len) ? ft_display_zero(p, 0) : 1;
 		ft_putnbr_base((unsigned int)copy, "0123456789ABCDEF", p);
 	}
 }

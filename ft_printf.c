@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:30:51 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/14 05:42:38 by gaefourn         ###   ########.fr       */
+/*   Updated: 2019/11/14 07:35:38 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ void	ft_look(t_struct *p)
 		ft_pct(p);
 	else if (p->format[p->i] == 'p')
 		ft_num_p(p);
+	else if (p->format[p->i] == '\0')
+		--p->i;
+	else
+		ft_indetermination(p);
 }
 
 int		ft_printf(const char *format, ...)

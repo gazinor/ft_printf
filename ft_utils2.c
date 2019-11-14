@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:37:47 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/14 05:43:00 by gaefourn         ###   ########.fr       */
+/*   Updated: 2019/11/14 08:00:02 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@ int		ft_set_find(char c)
 	if (c == 'c' || c == 'd' || c == 'i' || c == 's' || c == 'x' || c == 'X' ||
 			c == 'u' || c == 'p' || c == '%')
 		return (0);
-	else
-		return (1);
+	else if (c != 'c' && c != 'd' && c != 'i' && c != 's' && c != 'x'
+		&& c != 'X' &&	c != 'u' && c != 'p' && c != '%' && c != '-'
+		&& c != '*' && c != '.' && !(c >= '0' && c <= '9'))
+		return (0);
+	else if (c == '\0')
+		return (-1);
+	return (1);
 }
 
 void	ft_check_again_xd(t_struct *p)
@@ -36,16 +41,17 @@ void	ft_check_again_xd(t_struct *p)
 			p->minus = TRUE;
 		}
 	}
-	if (p->format[p->i] == '-')
+	else if (p->format[p->i] == '-')
 		p->minus = TRUE;
-	if (p->format[p->i] == '0')
+	else if (p->format[p->i] == '0')
 		p->zero = TRUE;
-	if (p->format[p->i] == '.')
+	else if (p->format[p->i] == '.')
+	{
 		p->dot = TRUE;
-	if (p->format[p->i] >= '1' && p->format[p->i] <= '9')
-		p->width = ft_atoi(p);
-	if (p->format[p->i] == '.')
 		p->precision = ft_atoi(p);
+	}
+	else if (p->format[p->i] >= '1' && p->format[p->i] <= '9')
+		p->width = ft_atoi(p);
 }
 
 int		ft_atoi(t_struct *p)
