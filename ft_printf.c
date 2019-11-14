@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:30:51 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/14 02:40:41 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 02:57:07 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	ft_look(t_struct *p)
 		ft_num_x_big(p);
 	else if (p->format[p->i] == '%')
 		ft_pct(p);
+	else if (p->format[p->i] == 'p')
+		ft_num_p(p);
 }
 
 int		ft_printf(const char *format, ...)

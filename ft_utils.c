@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 23:13:17 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/14 02:30:52 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 03:58:15 by glaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,16 @@ void	ft_putstr(char *str)
 
 void	ft_putnbr_base(unsigned long long n, char *base)
 {
-	unsigned long long	nb;
 	int					i;
 
-	nb = n;
 	i = 0;
 	while (base[i])
 		i++;
-	if (nb > i)
+	if (n >= i)
 	{
-		ft_putnbr_base(nb / i, base);
-		ft_putnbr_base(nb % i, base);
+		ft_putnbr_base(n / i, base);
+		ft_putnbr_base(n % i, base);
 	}
 	else
-		ft_putchar(base[nb]);
+		ft_putchar(base[n]);
 }
