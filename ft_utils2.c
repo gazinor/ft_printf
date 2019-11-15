@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 01:37:47 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/14 10:04:14 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/15 01:17:41 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_check_again_xd(t_struct *p)
 		{
 			if ((p->precision = (int)va_arg(p->ap, void *)) < 0)
 				p->dot = FALSE;
-			p->precision = p->precision == 0 ? -1 : p->precision;
+			p->precision = p->precision <= 0 ? -1 : p->precision;
 		}
 		else if ((p->width = (int)va_arg(p->ap, void *)) < 0)
 		{

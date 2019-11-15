@@ -6,7 +6,7 @@
 #    By: glaurent <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/08 17:12:19 by glaurent          #+#    #+#              #
-#    Updated: 2019/11/14 11:24:45 by glaurent         ###   ########.fr        #
+#    Updated: 2019/11/14 21:47:46 by gaefourn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS :=	ft_case_c.c \
 INCLUDES = ./
 OBJS = $(SRCS:.c=.o)
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I $(INCLUDES) 
+CFLAGS = -I $(INCLUDES) 
 
 all : $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: glaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 02:53:58 by glaurent          #+#    #+#             */
-/*   Updated: 2019/11/14 09:45:50 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 21:27:39 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ void	ft_num_p(t_struct *p)
 	p->len = ft_nbrlen_base((unsigned long)copy);
 	if (p->dot == TRUE)
 		p->zero = FALSE;
+	else
+		p->precision = 0;
 	ft_width_num_p(p, copy, p->zero == TRUE ? '0' : ' ');
 }

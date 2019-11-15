@@ -6,13 +6,34 @@
 /*   By: glaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 23:34:22 by glaurent          #+#    #+#             */
-/*   Updated: 2019/11/14 11:58:27 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/15 02:17:50 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_width_num_x(t_struct *p, unsigned long copy, char c)
+static void		ft_norme(t_struct *p, unsigned long copy, char c)
+{
+	int	i;
+
+	i = -1;
+	while (++i < (p->width + (p->precision == 0 && copy == 0 &&
+	p->dot == TRUE ? 1 : 0) - (p->precision > p->len ? p->precision : p->len)))
+		ft_putchar(c, p);
+	if (p->len == 1 && p->width != 0 && p->precision == -1 &&
+			i <= p->width && p->dot == TRUE)
+		ft_putchar(' ', p);
+	if (p->precision > p->len)
+		ft_display_zero(p, copy == 0 ? 1 : 0);
+	if (copy == 0 && p->dot == TRUE)
+	{
+		p->precision == 1 ? ft_putchar('0', p) : 1;
+		return ;
+	}
+	ft_putnbr_base((unsigned long)copy, "0123456789abcdef", p);
+}
+
+void			ft_width_num_x(t_struct *p, unsigned long copy, char c)
 {
 	int		i;
 
@@ -22,34 +43,31 @@ void	ft_width_num_x(t_struct *p, unsigned long copy, char c)
 		if (p->precision > p->len)
 			ft_display_zero(p, copy == 0 ? 1 : 0);
 		if (copy == 0 && p->dot == TRUE)
-			return ;
-		ft_putnbr_base((unsigned long)copy, "0123456789abcdef", p);
+		{
+			if (p->width == 0)
+			{
+				p->precision == 1 ? ft_putchar('0', p) : 1;
+				return ;
+			}
+		}
+		if (!(copy == 0 && p->dot == TRUE && p->width != 0))
+			ft_putnbr_base((unsigned long)copy, "0123456789abcdef", p);
+		else
+			p->len = 0;
 		while (++i < (p->width -
 					(p->precision > p->len ? p->precision : p->len)))
 			ft_putchar(c, p);
 	}
 	else
-	{
-		while (++i < (p->width + (p->precision == -1 ? 1 : 0) -
-					(p->precision > p->len ? p->precision : p->len)))
-			ft_putchar(c, p);
-		if (p->precision > p->len)
-			ft_display_zero(p, copy == 0 ? 1 : 0);
-		if (copy == 0 && p->dot == TRUE)
-			return ;
-		ft_putnbr_base((unsigned long)copy, "0123456789abcdef", p);
-	}
+		ft_norme(p, copy, c);
 }
 
-void	ft_num_x(t_struct *p)
+void			ft_num_x(t_struct *p)
 {
 	unsigned int copy;
 
 	copy = (unsigned int)va_arg(p->ap, void *);
 	p->len = ft_nbrlen_base(copy);
-	printf("\nprecision : %d\n", p->precision);
-	printf("width     : %d\n", p->width);
-	printf("len       : %d\n", p->len);
 	if (p->dot == TRUE)
 		p->zero = FALSE;
 	ft_width_num_x(p, copy, p->zero == TRUE ? '0' : ' ');

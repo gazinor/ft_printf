@@ -6,7 +6,7 @@
 /*   By: glaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 09:58:06 by glaurent          #+#    #+#             */
-/*   Updated: 2019/11/14 10:05:56 by glaurent         ###   ########.fr       */
+/*   Updated: 2019/11/14 22:12:04 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	ft_width_num(t_struct *p, long copy, char c)
 		copy < 0 ? ft_putchar('-', p) : 1;
 		if (p->precision > p->len)
 			ft_display_zero(p, copy < 0 ? 1 : 0);
-		ft_putnbr_base((long)c_copy, "0123456789", p);
+		if (!(copy == 0 && p->dot == TRUE && p->width != 0))
+			ft_putnbr_base((long)c_copy, "0123456789", p);
+		else
+			p->len = 0;
 		while (++i < (p->width -
 					(p->precision > p->len ? p->precision : p->len)))
 			ft_putchar(c, p);
@@ -46,7 +49,10 @@ void	ft_width_num(t_struct *p, long copy, char c)
 		copy < 0 ? ft_putchar('-', p) : 1;
 		if (p->precision > p->len)
 			ft_display_zero(p, copy < 0 ? 1 : 0);
-		ft_putnbr_base((long)c_copy, "0123456789", p);
+		if (!(copy == 0 && p->dot == TRUE && p->width != 0))
+			ft_putnbr_base((long)c_copy, "0123456789", p);
+		else
+			ft_putchar(' ', p);
 	}
 }
 
@@ -58,5 +64,7 @@ void	ft_num(t_struct *p)
 	p->len = ft_nbrlen((int)copy);
 	if (p->dot == TRUE)
 		p->zero = FALSE;
+	else
+		p->precision = 0;
 	ft_width_num(p, copy, p->zero == TRUE ? '0' : ' ');
 }
