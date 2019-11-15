@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 02:28:59 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/15 02:34:04 by gaefourn         ###   ########.fr       */
+/*   Updated: 2019/11/15 03:29:17 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,24 @@ void			ft_display_zero(t_struct *p, int signe)
 
 static void		ft_norme(t_struct *p, long copy, char c)
 {
-	int	i;
-	int	c_copy;
+	int		i;
+	long	c_copy;
 
 	i = -1;
 	c_copy = copy < 0 ? -copy : copy;
-	while (++i < (p->width + (p->precision == 0 && copy == 0 &&
-	p->dot == TRUE ? 1 : 0) - (p->precision > p->len ? p->precision : p->len)))
+	if (p->zero == TRUE)
+		copy < 0 ? ft_putchar('-', p) : 1;
+	while (++i < (p->width - (copy < 0 && p->precision > p->len ? 1 : 0) +
+(p->precision == 0 && copy == 0 && p->dot == TRUE ? 1 : 0) -
+(p->precision > p->len ? p->precision : p->len)))
 		ft_putchar(c, p);
-	copy < 0 ? ft_putchar('-', p) : 1;
 	if (p->len == 1 && p->width != 0 && p->precision == -1 &&
 			i <= p->width && p->dot == TRUE)
 		ft_putchar(' ', p);
+	if (p->zero == FALSE)
+		copy < 0 ? ft_putchar('-', p) : 1;
 	if (p->precision > p->len)
-		ft_display_zero(p, copy == 0 ? 1 : 0);
+		ft_display_zero(p, copy <= 0 ? 1 : 0);
 	if (copy == 0 && p->dot == TRUE)
 	{
 		p->precision == 1 ? ft_putchar('0', p) : 1;
@@ -48,7 +52,7 @@ static void		ft_norme(t_struct *p, long copy, char c)
 void			ft_width_num(t_struct *p, long copy, char c)
 {
 	int		i;
-	int		c_copy;
+	long	c_copy;
 
 	i = -1;
 	c_copy = copy < 0 ? -copy : copy;
@@ -56,7 +60,7 @@ void			ft_width_num(t_struct *p, long copy, char c)
 	{
 		copy < 0 ? ft_putchar('-', p) : 1;
 		if (p->precision > p->len)
-			ft_display_zero(p, copy == 0 ? 1 : 0);
+			ft_display_zero(p, copy <= 0 ? 1 : 0);
 		if (copy == 0 && p->dot == TRUE)
 		{
 			if (p->width == 0)
@@ -69,7 +73,7 @@ void			ft_width_num(t_struct *p, long copy, char c)
 			ft_putnbr_base((long)c_copy, "0123456789", p);
 		else
 			p->len = 0;
-		while (++i < (p->width -
+		while (++i < (p->width - (copy < 0 && p->precision > p->len ? 1 : 0) -
 					(p->precision > p->len ? p->precision : p->len)))
 			ft_putchar(c, p);
 	}
