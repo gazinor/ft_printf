@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 02:14:08 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/18 19:51:36 by gaefourn         ###   ########.fr       */
+/*   Updated: 2019/11/18 22:21:17 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,9 @@ static void		ft_norme(t_struct *p, unsigned long copy, char c)
 	ft_putnbr_base((unsigned long)copy, "0123456789ABCDEF", p);
 }
 
-void			ft_width_num_x_big(t_struct *p, unsigned long copy, char c)
+void			ft_width_num_x_big(
+t_struct *p, unsigned long copy, char c, int i)
 {
-	int		i;
-
-	i = -1;
 	if (p->minus == TRUE)
 	{
 		if (p->precision > p->len)
@@ -65,11 +63,13 @@ void			ft_width_num_x_big(t_struct *p, unsigned long copy, char c)
 
 void			ft_num_x_big(t_struct *p)
 {
-	unsigned int copy;
+	unsigned int	copy;
+	int				i;
 
+	i = -1;
 	copy = (unsigned int)va_arg(p->ap, void *);
 	p->len = ft_nbrlen_base(copy);
 	if (p->dot == TRUE)
 		p->zero = FALSE;
-	ft_width_num_x_big(p, copy, p->zero == TRUE ? '0' : ' ');
+	ft_width_num_x_big(p, copy, p->zero == TRUE ? '0' : ' ', i);
 }

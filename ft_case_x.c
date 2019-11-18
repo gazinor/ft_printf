@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_case_x.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glaurent <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/13 23:34:22 by glaurent          #+#    #+#             */
-/*   Updated: 2019/11/18 19:51:19 by gaefourn         ###   ########.fr       */
+/*   Created: 2019/11/13 23:34:22 by gaefourn          #+#    #+#             */
+/*   Updated: 2019/11/18 22:13:20 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,8 @@ static void		ft_norme(t_struct *p, unsigned long copy, char c)
 	ft_putnbr_base((unsigned long)copy, "0123456789abcdef", p);
 }
 
-void			ft_width_num_x(t_struct *p, unsigned long copy, char c)
+void			ft_width_num_x(t_struct *p, unsigned long copy, char c, int i)
 {
-	int		i;
-
-	i = -1;
 	if (p->minus == TRUE)
 	{
 		if (p->precision > p->len)
@@ -65,11 +62,13 @@ void			ft_width_num_x(t_struct *p, unsigned long copy, char c)
 
 void			ft_num_x(t_struct *p)
 {
-	unsigned int copy;
+	unsigned int	copy;
+	int				i;
 
+	i = -1;
 	copy = (unsigned int)va_arg(p->ap, void *);
 	p->len = ft_nbrlen_base(copy);
 	if (p->dot == TRUE)
 		p->zero = FALSE;
-	ft_width_num_x(p, copy, p->zero == TRUE ? '0' : ' ');
+	ft_width_num_x(p, copy, p->zero == TRUE ? '0' : ' ', i);
 }
