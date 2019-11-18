@@ -6,7 +6,7 @@
 /*   By: gaefourn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 02:24:16 by gaefourn          #+#    #+#             */
-/*   Updated: 2019/11/15 02:27:38 by gaefourn         ###   ########.fr       */
+/*   Updated: 2019/11/18 19:51:52 by gaefourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void			ft_width_num_u(t_struct *p, unsigned int copy, char c)
 				p->precision == 1 ? ft_putchar('0', p) : 1;
 				return ;
 			}
+			p->precision == 1 ? ft_putchar('0', p) : 1;
 		}
 		if (!(copy == 0 && p->dot == TRUE && p->width != 0))
 			ft_putnbr_base((unsigned int)copy, "0123456789", p);
